@@ -1,0 +1,103 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:ui="http://java.sun.com/jsf/facelets"	>
+<h:body>
+	<ui:composition template="/template/common.xhtml">
+		<ui:define name="leftContent">
+		<h:form> 
+					<div class="photoCadUser" style="background-image:url(#{request.contextPath}/autentication/user/#{usuarioBean.currentCpf}/#{usuarioBean.entidade.login}.png);"/>
+					<p:fileUpload cancelLabel="Cancelar"  style="overflow: hidden;" uploadLabel="Enviar" auto="false" label="Selecionar" fileUploadListener="#{usuarioBean.photoUpload}"  dragDropSupport="false"
+           				update="messages" sizeLimit="2048000" fileLimit="1" allowTypes="/(\.|\/)(gif|jpg|png)$/"  previewWidth="80"/>
+			</h:form>
+		</ui:define>
+		<ui:define name="rightContent">
+			
+			<div style=" margin-left: auto; margin-right: auto;">
+					<h:form id="cadastroUsuario">
+				<p:panel 
+					id="panelCadUsuario">
+						  
+						<h3>Cadastro de Usuários</h3>
+						
+						<h:panelGrid columns="2" cellspacing="5" cellpadding="5">
+							<p:outputLabel style="font-weight:bold; " for="id" value="Código" />
+							<p:inputText id="id" disabled="true"
+								value="#{usuarioBean.entidade.id}" />
+						</h:panelGrid>
+						
+						<h:panelGrid columns="2" cellspacing="5" cellpadding="4">
+							<p:outputLabel for="name" value="Nome" />
+							<p:inputText id="name" required="true"	style=" width:470px "						value="#{usuarioBean.entidade.nome}" label="Nome" />
+								
+							
+						</h:panelGrid>
+
+						
+						<h:panelGrid cellspacing="6" cellpadding="6" columns="4">
+								<p:outputLabel for="login" value="Login" />
+								<p:inputText id="login" required="true"		value="#{usuarioBean.entidade.login}" label="Login" />
+								<p:outputLabel for="senha" value="Senha"  />
+								<p:password  id="senha" required="false" feedback="true" value="#{usuarioBean.senha}" label="Senha" promptLabel="Insira a senha" weakLabel="Senha ruim" goodLabel="Boa senha" strongLabel="Ótima senha"/>
+						</h:panelGrid>
+						<br/>
+						<div class="well2" style="width: 510px; height:200px; ">
+							
+							<div style="float: left; margin-left:5px; height:100%; width: 300px;">
+								 <div class="row" style="margin-left: 5px; vertical-align: middle; ">
+								 	<p:outputLabel style="line-height: 20px !important; float: left;   width: 30px;" for="hosts" value="Hosts" />
+								 	<div style="float: right; margin-right: 6px; margin-bottom: 3px;">
+								 		<p:commandButton icon="ui-icon-plusthick" action="#{usuarioBean.addHost}"  >
+								 			<p:ajax event="dialogReturn"  update="hosts" />
+								 		</p:commandButton>
+								 		<p:commandButton icon="ui-icon-pencil" action="#{usuarioBean.editHost}" ajax="false" >
+								 		</p:commandButton>
+								 		<p:commandButton icon="ui-icon-trash"	action="#{usuarioBean.removeHost}">
+										</p:commandButton>
+										
+									</div>       
+								 </div>
+						         <p:selectOneListbox  style="overflow:auto; width: 287px; height:160px;" id="hosts" value="#{usuarioBean.entidade.host}" converter="generic_converter" var="t" >
+						            <f:selectItems value="#{usuarioBean.hosts}" var="host" itemLabel="#{host.nome}" itemValue="#{host}" />
+						            <p:column>
+						                <h:outputText value="#{t.nome}" />
+						            </p:column>
+		        				</p:selectOneListbox>
+							</div>
+							
+							<div style="margin-bottom:200px;  margin-top:10px;  float: right; overflow: visible; text-align:left; width: 200px;">
+								<h:panelGrid columns="2">
+										<p:outputLabel for="admin_user" value="Usuario Administrador"  />
+										<p:selectBooleanCheckbox id="admin_user" label="admin_user"  value="#{usuarioBean.entidade.admin}" />
+										<p:outputLabel for="host_user" value="Autenticação em client autorizada"  />
+										<p:selectBooleanCheckbox id="host_user" label="host_user" value="#{usuarioBean.entidade.clientLogin}"  />
+										<p:outputLabel for="active" value="Usuario Ativo"  />
+										<p:selectBooleanCheckbox id="active" label="Usuario Ativo" value="#{usuarioBean.entidade.ativo}"  />
+								
+								 
+								
+								</h:panelGrid>
+							</div>
+							
+						</div>
+						<br/>	
+						<div   style="float:none; ">	
+								<p:commandButton icon="ui-icon-disk" process="cadastroUsuario"
+									value="Salvar" update="cadastroUsuario :messages"
+									action="#{usuarioBean.save()}" ajax="false" >
+									<f:param
+										value="#{usuarioBean.entidade.id == null ? '0' : usuarioBean.entidade.id }"
+										name="UsuarioEntity" />
+								</p:commandButton>
+								<p:button id="voltar" icon="ui-icon-arrowreturnthick-1-w"  
+									value="Voltar" outcome="index.jsf" />
+						</div>
+				
+				</p:panel>
+					</h:form>
+			</div>
+		</ui:define>
+	</ui:composition>
+</h:body>
+</html>

@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:ui="http://java.sun.com/jsf/facelets">
+     
+    <h:head>
+        <title>Host</title>
+        <h:outputStylesheet library="css" name="bootstrap.css" target="head" />
+        <h:outputStylesheet library="css" name="bootstrap-responsive.css" target="head" />
+		<h:outputScript library="javascripts" name="bootstrap.js"/>
+    </h:head>
+     
+    <h:body style="background-color: transparent;">
+        <h:form>
+        		<p:panel 
+					id="panelCadUsuario">
+						  
+						
+						
+						<h:panelGrid columns="2" cellspacing="5" cellpadding="5">
+							<p:outputLabel style="font-weight:bold; " for="id" value="Código" />
+							<p:inputText id="id" disabled="true"	value="#{hostBean.entidade.id}" />
+						</h:panelGrid>
+						
+						<h:panelGrid columns="2" cellspacing="5" cellpadding="4">
+							<p:outputLabel for="name" value="Nome" />
+							<p:inputText id="name" required="true"	style=" width:470px "	value="#{hostBean.entidade.nome}" label="Nome" />
+							<p:outputLabel for="localizacao" value="Localização" />
+							<p:inputText id="localizacao" required="false"	style=" width:470px "	value="#{hostBean.entidade.localizacaoGeografica}" label="Localização" />
+						</h:panelGrid>
+
+						<br/>	
+						<div   style="float:none; ">	
+								<p:commandButton icon="ui-icon-disk" process="cadastroUsuario"
+									value="Salvar" update="cadastroUsuario :messages"
+									action="#{hostBean.save()}" ajax="false" >
+									<f:param value="#{hostBean.entidade.id == null ? '0' : hostBean.entidade.id }"
+										name="UsuarioEntity" />
+								</p:commandButton>
+								
+						</div>
+				
+				</p:panel>
+        
+        </h:form>
+    </h:body>
+</html>
