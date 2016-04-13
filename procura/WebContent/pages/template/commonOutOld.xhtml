@@ -1,0 +1,74 @@
+<?xml version='1.0' encoding="UTF-8" ?>
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:pe="http://primefaces.org/ui/extensions">
+
+
+<h:head>
+
+	<meta charset="utf-8" />
+	<title>ULYSSES</title>
+	<!--[if lt IE 9]>
+			<script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+		<![endif]-->
+	<link rel="stylesheet" media="all" href="" />
+	<meta name="viewport" content="width=device-width, initial-scale=1" />
+	<!-- Adding "maximum-scale=1" fixes the Mobile Safari auto-zoom bug: http://filamentgroup.com/examples/iosScaleBug/ -->
+	<h:outputStylesheet library="css" name="reset.css" target="head" />
+	<h:outputStylesheet library="css" name="layout.css" target="head" />
+	<style type="text/css">
+.ui-layout-north {
+	z-index: 20 !important;
+	overflow: visible !important;;
+}
+
+.ui-layout-north .ui-layout-unit-content {
+	overflow: visible !important;
+}
+</style>
+</h:head>
+<h:body>
+	<div id='content_full'>
+		<div class='header'>
+			<div class='logo'>
+				<h:graphicImage value="/resources/imgs/logo.png" width="100" height="171" />
+				
+			</div>
+			<div id='nav'>
+				<ul style="display:block;">
+					<li><div style="background: none repeat scroll 0 0 #922125; height: 12px; margin-bottom: 12px; margin-top: -24px; position: relative; width: 130%; margin-left: -8px;"></div>
+						<a href='#'>LOGIN</a>
+					</li>
+					
+				</ul>
+			</div>
+		</div>
+		<div id='main'>
+			
+				<div id='content'>
+					<div id='content_left'>
+						<ui:insert name="leftContent" />
+					</div>
+					<div id='content_right'>
+						<ui:insert name="rightContent" />
+					</div>
+				</div>
+			
+		</div>
+		<div id='footer'>
+			<p>+55 61 3963-2555 | SRTVN - Qd. 702 - Lote P - Ed. Brasília
+				Rádio Center, Ala A - 2 andar Sala 2078 - CEP: 70719-900 - Brasília
+				- DF</p>
+			<p>XTDOC Tecnologia - Dalston Consultoria</p>
+		</div>
+	</div>
+	<form>
+		<p:growl id="messages" />
+	</form>
+
+</h:body>
+</html>

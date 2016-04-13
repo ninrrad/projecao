@@ -1,0 +1,225 @@
+<?xml version='1.0' encoding="UTF-8" ?>
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:pe="http://primefaces.org/ui/extensions">
+
+
+<h:head>
+
+	<meta charset="utf-8" />
+	<title>ULYSSES</title>
+	<!--[if lt IE 9]>
+			<script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+		<![endif]-->
+	<link href='http://fonts.googleapis.com/css?family=Playfair+Display+SC'
+		rel='stylesheet' type='text/css' />
+	<meta name="viewport" content="width=device-width, initial-scale=1" />
+	<!-- Adding "maximum-scale=1" fixes the Mobile Safari auto-zoom bug: http://filamentgroup.com/examples/iosScaleBug/ -->
+
+
+
+
+	
+	<h:outputStylesheet library="css" name="estilo.css" target="head" />
+	<h:outputStylesheet library="css" name="reset.css" target="head" />
+	<h:outputStylesheet library="css" name="layout.css" target="head" />
+	<h:outputStylesheet library="css" name="jquery.qtip.css" target="head" />
+	<h:outputScript library="javascripts" name="jquery-ui-1.8.22.custom.min.js"/>
+	<h:outputScript library="javascripts" name="jquery.qtip.js"	 />
+	
+
+	<style type="text/css">
+.ui-layout-north {
+	z-index: 20 !important;
+	overflow: visible !important;;
+}
+
+.ui-layout-north .ui-layout-unit-content {
+	overflow: visible !important;
+}
+</style>
+
+</h:head>
+<h:body style="background-color:#000000;">
+	<div id='content_full'>
+		<p:outputPanel id="main_menu">
+
+				<script type="text/javascript">
+						$(document).ready(function() {
+							$('.modulo').qtip({
+								show : {
+									event : 'click',
+									effect: { type: 'fade',length: 500 }
+								},
+								hide : {
+									event : 'unfocus',
+									length: 500 
+								},
+								type : {
+									event : 'fade'
+								},
+								position : {
+									my : 'top left', // Position my top left... 
+									at : 'midle center', // at the bottom right of...
+								},
+								title : {
+									text : 'About me',
+									button : 'Close'
+								},
+								content : {
+									text : function(api) {
+										//return $('#' + $(this).attr('title')).clone();
+										return $('#' + $(this).attr('title'));
+									}
+								},
+								
+								events: {
+									show: function(event, api) { api.elements.target.addClass('menu_selected'); 
+																 //alert(api.elements.target.html() + ' Vla = #m_' + $(this).attr('title'));			
+																},
+									hide: function(event, api) { api.elements.target.removeClass('menu_selected'); },
+								},
+								
+				
+							}
+				
+							)
+				
+						});
+						
+						
+					</script>
+
+
+		<div class='topMenu'>
+			<div class='headerI'>
+				<div class='logoI'>
+					<h:graphicImage value="/resources/imgs/logo.png" width="100"
+						height="171" />
+				</div>
+				<div id='nav'>
+					<ul>
+						<li><div></div> <a href='../search/index.jsf'>Pesquisar</a></li>
+						<li class="modulo" title="arquivo" ><div></div> <a href='#'>Arquivo</a></li>
+						<li class="modulo" title="exibir"><div></div> <a href='#'>Exibir</a></li>
+						<li><div></div> <a href='#'>Browser</a></li>
+						<li class="modulo" title="administrar"><div></div> <a href='#'>Administrar</a></li>
+						<li class="modulo" title="senha"><div></div> <a href='#'>Senha</a></li>
+						<li><div></div> <a href='#'>Ajuda</a></li>
+						<li><div></div> <a href='#'>Sobre</a></li>
+					</ul>
+				</div>
+				
+				<div class="contentQtip" style="text-align: center; padding:5px;  " id="arquivo" >
+					<p>
+					<h:form>
+					    <p:fileUpload  styleClass="hide_file_upload" label="Ler Pesquisa" update=":messages @form :content "  fileUploadListener="#{mBDownload.pesquisaUpload}"
+						  multiple="false" invalidFileMessage="Tipo de arquivo inválido." validatorMessage="Arquivo Inválido." allowTypes="/(\.|\/)(uli)$/"  showButtons="false"  auto="true" customUI="true" widgetVar="uploader" />
+					</h:form>						
+					
+					</p>
+					<p style="margin-top: 3px; ">
+						<h:form>
+							<p:commandButton  style="width: 140px; height: 25px;"  update=":messages @form" value="Salvar Pesquisa"  ajax="false">  
+							  	<p:fileDownload value="#{mBDownload.searchFile}" />    
+							</p:commandButton>
+						</h:form>
+						
+					</p >
+					<p style="margin-top: 3px;  ">
+					<p:button  value="Imprimir Pesquisa" style="width: 140px; height: 25px;"/><br/>
+					</p>
+					<p style="margin-top: 3px;  ">
+					<h:form>
+						<p:commandButton action="#{usuarioBean.efetuarLogout()}"  update="@all" value="Sair" style="width: 140px; height: 25px;"   />
+					 </h:form>
+					</p>
+				</div>
+				<div class="contentQtip" style="text-align: center; padding:5px;  " id="exibir" >
+					<h:form>
+					<p>
+					  <p:commandButton action="#{pesquisaBean.setPageSize(20)}" update="@form :messages :content " value="20 Ocorrencias" style="width: 140px; height: 25px;"/>
+					</p>
+					<p style="margin-top: 3px; " >
+					<p:commandButton action="#{pesquisaBean.setPageSize(50)}" update="@form :messages :content " value="50 Ocorrencias" style="width: 140px; height: 25px;"/>
+					</p>
+					<p style="margin-top: 3px; ">
+					<p:commandButton action="#{pesquisaBean.setPageSize(99999)}" update="@form :messages :content "  value="Todas" style="width: 140px; height: 25px;"/>
+					</p>
+					</h:form>
+				</div>
+				<div class="contentQtip" style="text-align: center; padding:5px;  " id="administrar" >
+					<h:form>
+					<p>
+					<p:button href="/pages/acervo/index.jsf" value="Acervo" style="width: 140px; height: 25px;"/>
+					</p>
+					<p style="margin-top: 3px; ">
+					<p:button  value="Documento" href="/pages/documento/index.jsf" style="width: 140px; height: 25px;"/>
+					</p>
+					<p style="margin-top: 3px; ">
+					<p:button  href="/pages/usuario/index.jsf" value="Usuário" style="width: 140px; height: 25px;"/>
+					</p>
+					<p style="margin-top: 3px; ">
+					<p:button  value="Log" style="width: 140px; height: 25px;"/>
+					</p>
+					</h:form>
+				</div>
+				<div class="contentQtip" style="text-align: center; padding:5px;  " id="senha" >
+					<h:form>
+					<span style="color:white; font-size: 14px; font-family:Arial; font-weight: bold;">Alterar Senha</span>
+					
+						<div style="color:white; margin-top:6px;text-align:; font-size: 11px; font-family:Arial; font-weight: bold;">Senha Atual</div>
+					<p>
+					  <p:password value="#{usuarioBean.oldPassword}" required="true" />
+					</p>
+					<div style="color:white; text-align:; font-size: 11px; font-family:Arial; font-weight: bold;">Nova senha</div>
+					<p>
+					  <p:password value="#{usuarioBean.newPassword}" required="true"/>
+					</p>
+					<p style="margin-top: 3px; ">
+					<p:commandButton action="#{usuarioBean.changePassword()}" value="Alterar" update=":messages :main_menu"/>
+					</p>
+				 </h:form>
+				</div>
+				
+			</div>
+
+		</div>
+		</p:outputPanel  >
+		<div id='mainI'>
+			<p:layout style="min-width:100%;min-height:100%;" id="layout">
+				<p:layoutUnit
+					style="vertical-align:middle;  padding: 0px; background:#E6E0F8; "
+					header="Diretorios" closable="true" collapsible="true"
+					position="west" resizable="true" size="250" minSize="40"
+					maxSize="500">
+					<ui:insert name="leftContent" />
+				</p:layoutUnit>
+				
+				<p:layoutUnit
+					style="vertical-align:middle; padding: 0px; margin:0px;"
+					position="center" resizable="true">
+					<p:outputPanel id="content">
+					<ui:insert name="rightContent" style=" padding: 0px;" />
+					</p:outputPanel>
+				</p:layoutUnit>
+			</p:layout>
+		</div>
+		<div id='footerI'>
+			<p>+55 61 3963-2555 | SRTVN - Qd. 702 - Lote P - Ed. Brasília
+				Rádio Center, Ala A - 2 andar Sala 2078 - CEP: 70719-900 - Brasília
+				- DF | XTDOC Tecnologia - Dalston Consultoria</p>
+		</div>
+	</div>
+	<p:outputPanel id="messages">
+		<form>
+			<p:growl />
+		</form>
+	</p:outputPanel>
+
+</h:body>
+</html>

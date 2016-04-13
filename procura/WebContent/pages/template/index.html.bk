@@ -1,0 +1,72 @@
+<!doctype html>
+<html>
+
+	<head>
+		<meta charset="utf-8"/>
+		<title>ULYSSES</title>
+		<!--[if lt IE 9]>
+			<script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+		<![endif]-->
+		<link rel="stylesheet"  href="css/reset.css"/>
+		<link rel="stylesheet"  href="css/layout.css"/>
+		<link rel="stylesheet" media="all" href=""/>
+		<meta name="viewport" content="width=device-width, initial-scale=1"/>
+		<meta name="author" content="Gabriel Resende" />
+		<!-- Adding "maximum-scale=1" fixes the Mobile Safari auto-zoom bug: http://filamentgroup.com/examples/iosScaleBug/ -->
+	</head>
+	
+	<body lang="en">
+		<div id='content_full'>
+			<div class='header'>
+				<div class='logo'>
+					<!--  img src='imagens/logo.png'/  -->
+				</div>
+				<div id='nav'>
+					<ul>
+						<li><div></div><a href='#'>LOGIN</a></li>
+						<li><div></div><a href='#'>MONONO</a></li>
+						<li><div></div><a href='#'>MONONO</a></li>
+						<li><div></div><a href='#'>MONONO</a></li>
+						<li><div></div><a href='#'>LOGOF</a></li>
+					</ul>
+
+				</div>
+			</div>
+			
+			<div id='main'>
+				<div id='content_main'>
+					<div id='content'>
+						<div id='content_left'>
+							<div id='title'>Efetue login para acesso ao acervo</div>
+							<div id='field'>
+								<p><label>CNPJ <input type='text' value=''></label></p>
+								<p><label >Usuário <input type='text' value=''></label></p>
+								<p><label >senha <input type='text' value=''></label></p>
+								<span><a href='#'>Esqueci minha senha</a></span><br>
+								<label id='check'><input type="checkbox">Grave minha senha neste computador</label> 
+							</div>
+						</div>
+						<div id='content_right'>
+							<div>
+								<h1>XTDOC &reg; </h1>
+								<p>Soluções para gestão</p>
+								<p>de documentos</p>
+							</div>
+							<div id='support'>
+								<h1>Suporte</h1>
+								<p>+55 61 3963-2555</p>
+								<p>xtdoc@xtdoc.com.br</p>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			
+			<div id='footer'> 
+				<p> +55 61 3963-2555 | SRTVN - Qd. 702 - Lote P - Ed. Brasília Rádio Center, Ala A - 2 andar Sala 2078 - CEP: 70719-900 - Brasília - DF</p>
+				<p>Dalston Consultoria</p>
+			</div>
+		</div>
+	</body>
+	
+</html>
