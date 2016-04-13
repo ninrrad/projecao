@@ -1,20 +1,19 @@
-<?xml version="1.0" encoding="UTF-8"?>
 <html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:f="http://java.sun.com/jsf/core"
-	xmlns:ui="http://java.sun.com/jsf/facelets"
-	xmlns:p="http://primefaces.org/ui">
-	
-    <h:head>
-        <title>Procura</title>
-    </h:head>
-    <h:body>
-    	<h2>Bem vindo ao procura...</h2>
-    	<h:form>
-    	<p:growl/>
-    	 <h:panelGrid columns="2" id="matchGrid" cellpadding="5">              
-    	 
-    	 </h:panelGrid>	
-    	</h:form>
-    </h:body>
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:ui="http://java.sun.com/jsf/facelets">
+<h:body>
+	<ui:composition template="/pages/template/generico.xhtml">
+		<ui:define name="meio">
+			<h2>Bem vindo ao procura...</h2>
+			<h:form>
+				<p:growl />
+				<h:panelGrid columns="2" id="matchGrid" cellpadding="5">
+
+				</h:panelGrid>
+			</h:form>
+		</ui:define>
+	</ui:composition>
+</h:body>
 </html>
