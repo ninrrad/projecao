@@ -1,0 +1,185 @@
+/*------------------------------------ JSF -------------------------------*/
+.ui-widget {
+	font:0.9em  arial; 
+}
+.ui-state-highlight, .ui-widget-content .ui-state-highlight, .ui-widget-header .ui-state-highlight {
+  /* border: 1px solid #F02239; */
+  background: rgba(255, 0, 0, 0.74) !important;
+  color: #FFF7F7 !important;
+  border: 1px solid #AE3434 !important;
+  font-size:12px !important; 
+  font-family: verdana; 
+}
+
+/*----------------------------------------  Projeção ---------------------------------------------  */
+body{font:11px  arial; color:#333333; margin:0; padding:0; background:url(../resources/img/bg_home.gif) top repeat-x; background-color:#e7e7e9;}
+
+img{ border:none; outline:none;}
+a{outline:none;}
+form{margin:0; padding:0;}
+select, input, option{font: 11px arial; color:#999999; outline:none;}
+
+a{text-decoration:none; color:#302f53;}
+a:hover{ text-decoration:underline;}
+
+.lft{ float:left}
+.rgt{ float:right}
+.lmp{ clear:both; margin:0; padding:0;}
+.tres{ margin-bottom:3px;}
+.cinco{ margin-bottom:5px;}
+.dezup{ margin-top:10px;}
+.vinte{ margin-bottom:20px;}
+.dezoito{ margin-bottom:18px; margin-top:12px;}
+.tit_doze{ font-size:12px; font-weight:bold; color:#302f53;}
+.ft_vrm{ color:#d81d1d;font-weight:bold;}
+.caixa{width:225px; background:#f5f5f6;}
+.caixa_cont{width:200px; margin:0 auto;}
+
+.principal{width:970px; margin:0 auto;}
+
+/*  topo login */
+.top_login{width:970px; height:93px; margin:0 auto; bor der:1px solid red;}
+
+
+/*.login{width:328px; height:93px; background:url(../img/_home/bg_login.gif); float:right; position:relative;}*/
+.login{width:236px; height:42px; background:url(../img/_home/bg_topo.gif); float:right; padding-top:51px;}
+.login_cbox{width:180px; height:25px; position:absolute; left: 125px; top: 17px;}
+.login_nome{position:absolute;	left: 43px;	top: 51px;	width:102px;height:16px;background:none;border:none;}
+.login_senha{position:absolute;left: 184px;top: 51px;width:102px;height:16px;background:none;border:none;}
+.login_ok{position:absolute;left: 295px;top: 48px;outline:none;}
+.login_esenha{position:absolute;left: 181px;top: 73px;color:#9796a8;}
+.login_esenha a{ color:#9796a8;}
+
+
+/*  topo com menu */
+.topo_menu{width:970px; height:260px; margin:0 auto;background:url(../img/_home/top.jpg) top no-repeat; position:relative; z-index:999;}
+.menu_box{width:235px; position:absolute; left: 0px; top: 33px; z-index:999; bor der:1px solid white;}
+.topo_imagen_randomica{width:121px; height:326px; position:absolute; left: 248px; top: -69px;}
+.topo_swf{width:540px; height:163px; position:absolute; left: 405px; top: 50px;}
+
+
+/* lista de menus internos */
+.navcontainer ul{list-style-type: none; margin:0; padding:0; background:#302f53; padding-left:5px; margin-left:5px;display:hide;}
+.navcontainer ul li {border-bottom:1px solid #262642; padding:5px;}
+.navcontainer ul li.ativo 
+{border-bottom:1px solid #262642; pa dding:5px;  padding-left: 10px; margin-left:-5px;
+text-align: left;font: bold 10px arial;color: #49495f; background:#1c1c37; text-transform: uppercase;}
+.navcontainer ul li a {background: url(../img/menu/seta.gif) left  no-repeat; 
+ padding-left: 15px; text-align: left; font: bold 11px arial;
+text-decoration: none; color: #707c8d;}
+.navcontainer ul li a:hover {background: url(../img/menu/seta_on.gif) left  no-repeat;
+color: black; color:#ffffff;}
+
+.navcontainer ul li a#current {background: url(../img/menu/list-active.gif) left  no-repeat;
+color: #666;}
+
+
+/* coluna A */
+.home_coluna_A{width:225px; hei ght:200px; float:left; margin-right:17px; padding-left:10px; margin-bottom:30px;}
+.procura{width:225px; height:77px; background:url(../img/_home/bg_procura.gif) no-repeat; position:relative; margin-bottom:33px; z-index:0;}
+.procura_campo{position:absolute; left: 13px; top: 40px; width: 123px; height: 16px;background:none; border:none;}
+.procura_ok{position:absolute;left: 174px;top: 21px;}
+
+
+/* coluna B */
+.home_coluna_B{width:212px; float:left; background:url(../img/_home/bg_col.jpg) no-repeat; padding-left:13px; padding-top:25px; margin-right:16px;padding-bottom:20px;}
+.cB_sel{width:165px; border:1px solid #b7b7b7; color:#333333; float:left; margin-bottom:10px;}
+.cBc{color:#333333;}
+
+/* coluna C */
+.home_coluna_C{width:212px;float:left; background:url(../img/_home/bg_col.jpg) no-repeat;padding-left:13px; padding-top:25px; margin-right:16px;padding-bottom:20px;}
+.listas{width:162px; height:23px; background:url(../img/_home/bg_hli.gif) no-repeat; padding:3px 0px 0px 22px;}
+a.list{ color:#302f53;}
+.listass{ background:url(../img/_home/bg_hlis.gif) no-repeat; padding:3px 0px 0px 22px;}
+
+/* coluna D */
+.home_coluna_D{width:212px; float:left; background:url(../img/_home/bg_col.jpg) no-repeat;padding-left:13px; padding-top:25px; margin-right:6px; padding-bottom:20px;}
+.listass{width:162px; height:23px; background:url(../img/_home/bg_hlis.gif) no-repeat; padding:3px 0px 0px 22px;}
+
+/* coluna E */
+.home_coluna_E{width:252px; float:left;}
+
+.coluna_esquerda_home{width:232px; float:left; padding-left:10px; position:relative; margin-top:10px;}
+
+.box_pesquisa{width:225px; height:215px; background:url(../img/_internas/bg_pesquisa.gif) no-repeat; padding-top:48px;}
+.pesquisa_campo, .pesquisa_select {width: 189px; background: #FFFFFF; border:none; border:1px solid #b8b8b9; padding-left:10px;}
+
+/* Home noticias */
+.home_noticias{width:225px; margin-bottom:40px;}
+.bloco_news{width:215px; border-left:1px solid #363557; padding-left:10px;}
+.n_data{ color:#d81d1d; font-weight:bold; margin-bottom:10px;}
+
+/* Home visitar */
+.home_visitar{width:225px; margin-bottom:40px;}
+
+/*  home conhe�a colegio  */
+.home_banners{width:225px; margin-bottom:40px;}
+.h_banner{ margin-bottom:20px;}
+
+/* coluna F */
+.home_coluna_F{width:485px; float:left;}
+.bloco_F{width:434px; background:#f5f5f6; padding:0 16px 10px 16px;}
+
+.bloco_F_A{width:200px; float:left;}
+.bloco_F_B{width:210px; float:right;}
+.ultimos_posts{width:210px; border-bottom:1px solid #dcdcdd; padding-bottom:10px; margin-bottom:10px;}
+.up_tit{ color:#d81d1d; font-weight:bold; margin-bottom:10px;}
+
+.bloco_G{width:466px; pad ding:0 16px 10px 16px; margin-bottom:40px;}
+.pergunta{background:url(../img/_home/bg_proj_quer_saber.gif) top left no-repeat; font:bold 12px arial; padding-left:40px; color:#333333; margin-bottom:10px;}
+
+/* coluna H */
+.home_coluna_H{width:225px; float:left;}
+.foto_entrevista{float:left; margin-right:10px;}
+.i_newsletter{width:192px; background:#FFFFFF; border:1px solid #b8b8b9; margin-top:10px;}
+
+
+/* rodape menus */
+.rodape_menus{width:100%; margin:0 auto; background:#dbdde0; padding-top:30px; padding-bottom:40px;}
+.rodape_menus_cont{width:950px; margin:0 auto;}
+.rdp_box{float:left; width:158px;}
+.rpt{ padding-top:32px;}
+ul.m_rdp{list-style:url(../img/_home/rdp_grey.gif); padding:0 10px; margin:0 10px; *margin: 0 12px; *padding: 0 12px; margin-top:5px;}
+ul.m_rdp li { margin-bottom:3px;}
+ul.m_rdp li a{ color:#707c8d;}
+ul.m_rdpb{list-style:url(../img/_home/rdp_grey.gif); padding:0 6px; margin:0 6px; *margin: 0 8px; *padding: 0 8px; margin-top:5px;}
+ul.m_rdpb li { margin-bottom:3px;}
+ul.m_rdpb li a{ color:#707c8d;}
+.rdp_end{border-left:1px solid #ced0d2; padding-left:8px; margin-top:5px; margin-bottom:15px; coloc8d;}
+
+
+
+
+.rodape{width:100%; height:34px; padding-top:13px; text-align:center; margin:0 auto; background:#c8cacd; color:#858a90;}
+
+/* enquete  */
+.enq_nove{ font-size:9px; color:#666666; padding-top:10px;}
+.enq_bold{text-align:right; font-weight:bold; colo666;}
+
+
+
+
+/* menu home  */
+ ul.menu_home{ list-style:none; padding:0px; margin:0px; padding-left:3px;}
+ ul.menu_home li{ border-bottom:1px solid #262642;  background-color:#302f53; color:#707c8d; }
+ ul.menu_home  li.ativo {text-align: left; font: bold 11px arial;color: #49495f; background:#1c1c37; text-transform: uppercase;padding:6px 3px 6px 12px; display:block;}
+ ul.menu_home li a {background:url(../img/menu/seta.gif) top left no-repeat; font: bold 11px arial; text-decoration: none; color: #707c8d;padding:6px 3px 6px 30px; display:block; }
+ ul.menu_home li a:hover {background:url(../img/menu/seta_on.gif) top left no-repeat; color: black; color:#ffffff; text-decoration:none;}
+
+/* coluna not�cias */
+.home_coluna_noticia{width:480px; float:left; }
+.colunas_centrais{ float:left; }
+
+/* noticias */
+
+.foto_dest{float: left; padding-right: 5px;} 
+.tit_noticias_destaque{ font-size:14px; font-weight:bold;  margin-bottom:5px; }
+
+a.lnk_bold{ font-weight:bold;}
+a.lnk_bullet{ padding-left:20px; margin-top:5px; display:block; background:url(../img/_internas/bul_azul.gif) left no-repeat; }
+.foto_esq{ float:left; margin:0 10px 10px 0;}
+ul.box_txt{list-style: none; padding:0; margin:0; margin-top:15px;}
+ul.box_txt li { float:left; width:225px; padding-right:15px;  padding-bottom:30px; }
+ul.box_arquivo{list-style: none; padding:0; margin:0; margin-top:10px; margin-bottom:30px;}
+ul.box_arquivo li { margin-bottom:5px; }
+ul.box_arquivo li a { font-size:13px;}

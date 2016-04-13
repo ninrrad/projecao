@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+
+<h:head>
+	<title>Login</title>
+	<h:outputStylesheet library="css" name="home.css" />
+	
+</h:head>
+<h:body>
+    <link href='https://fonts.googleapis.com/css?family=Fjalla+One' rel='stylesheet' type='text/css'/>
+	<div class="principal"
+		style="text-align: center !important; vertical-align: middle; width: 300px;">
+		
+		
+			<div style="margin-top: 3px !important; vertical-align:middle; width: 100%;">
+				
+				<img src="/procura/resources/img/logo.gif" width="200" height="70" /><br/>
+				<SPAN style="font-size:40px !important;  font-family: 'Fjalla One', verdana; color :#100831 !important; text-align: left; vertical-align: middle;"> Procura</SPAN>
+				
+			</div>
+			<div style="display: inline-block;width: 150px;float: none !important; color: white ; font-style: italic;font-family: verdana;">
+				
+				<h:form>
+					<p:growl />
+					<h:panelGrid columns="1" id="matchGrid" cellpadding="5" style="margin-top: 22px">
+						<p:inputText value="#{loginBean.login}" id="login" placeholder="Usuário" style="width: 100%;"/>
+						<p:password value="#{loginBean.senha}" id="senha" placeholder="Senha" style="width: 100%;"/>
+					</h:panelGrid>
+					<p:commandButton update="@form" value="Login" style="width: 93%;margin-top: 24px; font-size:13px;font-weight:bold;"
+							action="#{loginBean.logon()}" />
+				</h:form>
+			</div>
+	</div>
+</h:body>
+</html>
