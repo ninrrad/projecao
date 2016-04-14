@@ -5,10 +5,13 @@
 	<persistence-unit name="bd_anm">
 		<provider>org.hibernate.ejb.HibernatePersistence</provider>
 		<properties>
-			<property name="hibernate.connection.driver_class" value="org.postgresql.Driver" />
+			<!--   property name="hibernate.connection.username" value="postgres" / -->
+			<!--   property name="hibernate.connection.driver_class" value="org.postgresql.Driver" / -->
 			<property name="hibernate.connection.password" value="123" />
-			<property name="hibernate.connection.username" value="postgres" />
-			<property name="hibernate.connection.url" value="jdbc:postgresql://127.0.0.1:5432/anm" />
+			
+			<property name="hibernate.connection.driver_class" value="com.mysql.jdbc.Driver" />
+			<property name="hibernate.connection.username" value="root" />
+			<property name="hibernate.connection.url" value="jdbc:mysql://127.0.0.1/anm" />
 			<property name="hibernate.show_sql" value="true" />
 			<property name="hibernate.format_sql" value="true" />
 			<property name="hibernate.hbm2ddl.auto" value="update"/>
