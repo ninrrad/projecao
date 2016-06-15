@@ -1,0 +1,165 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+
+<h:head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<h:outputStylesheet name="./css/default.css" />
+	<h:outputStylesheet name="./css/cssLayout.css" />
+	<title>Projeto 3</title>
+</h:head>
+
+
+<ui:composition template="./System_Temp.xhtml">
+	<ui:define name="content">
+
+		<h:body>
+			<h:form>
+
+				<div align="center">
+					<p:panelGrid columns="1">
+
+						<p:outputLabel value="1) Qual o maior planeta do Sistema Solar?"></p:outputLabel>
+						<h:selectOneRadio value="#{controladora.questao1}">
+							<f:selectItem itemValue="A" itemLabel="A)Saturno" />
+							<f:selectItem itemValue="B" itemLabel="B)Netuno" />
+							<f:selectItem itemValue="C" itemLabel="C)Urano" />
+							<f:selectItem itemValue="D" itemLabel="D)Plutão" />
+							<f:selectItem itemValue="E" itemLabel="E)Marte" />
+						</h:selectOneRadio>
+					</p:panelGrid>
+
+
+					<p:spacer height="40px;" />
+
+					<p:panelGrid columns="1">
+						<p:outputLabel value="2) Qual o planeta mais próximo da Terra?" />
+						<h:selectOneRadio value="#{controladora.questao2}">
+							<f:selectItem itemValue="A" itemLabel="A)Saturno" />
+							<f:selectItem itemValue="B" itemLabel="B)Netuno" />
+							<f:selectItem itemValue="C" itemLabel="C)Urano" />
+							<f:selectItem itemValue="D" itemLabel="D)Plutão" />
+							<f:selectItem itemValue="E" itemLabel="E)Marte" />
+						</h:selectOneRadio>
+					</p:panelGrid>
+
+
+					<p:spacer height="40px;" />
+
+					<p:panelGrid columns="1">
+						<p:outputLabel
+							value="3) Qual planeta do Sistema Solar possui anéis em sua volta?" />
+						<h:selectOneRadio value="#{controladora.questao3}">
+							<f:selectItem itemValue="A" itemLabel="A)Saturno" />
+							<f:selectItem itemValue="B" itemLabel="B)Netuno" />
+							<f:selectItem itemValue="C" itemLabel="C)Urano" />
+							<f:selectItem itemValue="D" itemLabel="D)Plutão" />
+							<f:selectItem itemValue="E" itemLabel="E)Marte" />
+						</h:selectOneRadio>
+					</p:panelGrid>
+
+					<p:spacer height="40px;" />
+
+					<p:panelGrid columns="1">
+						<p:outputLabel
+							value="4) Qual a duração do Movimento de Translação da Terra?" />
+						<h:selectOneRadio value="#{controladora.questao4}">
+							<f:selectItem itemValue="A" itemLabel="A)1 hr" />
+							<f:selectItem itemValue="B" itemLabel="B)12 hrs" />
+							<f:selectItem itemValue="C" itemLabel="C)3 hrs" />
+							<f:selectItem itemValue="D" itemLabel="D)24 hrs" />
+							<f:selectItem itemValue="E" itemLabel="E)5 dias" />
+						</h:selectOneRadio>
+					</p:panelGrid>
+
+					<p:spacer height="40px;" />
+
+					<p:panelGrid columns="1">
+						<p:outputLabel
+							value="5) Qual a duração do Movimento de Rotação da Terra?" />
+						<h:selectOneRadio value="#{controladora.questao5}">
+							<f:selectItem itemValue="A" itemLabel="A)1 hr" />
+							<f:selectItem itemValue="B" itemLabel="B)12 hrs" />
+							<f:selectItem itemValue="C" itemLabel="C)3 hrs" />
+							<f:selectItem itemValue="D" itemLabel="D)24 hrs" />
+							<f:selectItem itemValue="E" itemLabel="E)5 dias" />
+						</h:selectOneRadio>
+					</p:panelGrid>
+
+
+
+
+
+
+					<p:spacer height="50px;" />
+					<p:spacer />
+
+
+
+					<p:commandButton value="Responder" target="_blank"
+						onclick="PF('dlgCartao').show();" update="form" />
+				</div>
+
+				<!-- Caixa de dialog 1 -->
+
+				<p:dialog header="#{despesaObraBean.despesaObra.tipo_pagamento}"
+					widgetVar="dlgCartao" minHeight="40">
+
+
+					<p:panelGrid columns="1" id="form">
+
+
+						<p:outputLabel value="#{controladora.resposta1}" />
+						<p:outputLabel value=" Sua resposta: #{controladora.questao1}" />
+
+
+						<p:spacer height="10px;" />
+
+
+
+						<p:outputLabel value="#{controladora.resposta2}" />
+						<p:outputLabel value=" Sua resposta: #{controladora.questao2}" />
+						<p:spacer height="10px;" />
+
+
+						<p:outputLabel value="#{controladora.resposta3}" />
+						<p:outputLabel value=" Sua resposta: #{controladora.questao3}" />
+						<p:spacer height="10px;" />
+
+						<p:outputLabel value="#{controladora.resposta4}" />
+						<p:outputLabel value=" Sua resposta: #{controladora.questao4}" />
+						<p:spacer height="10px;" />
+
+						<p:outputLabel value="#{controladora.resposta5}" />
+						<p:outputLabel value=" Sua resposta: #{controladora.questao5}" />
+						<p:spacer height="10px;" />
+
+					</p:panelGrid>
+
+
+
+
+				</p:dialog>
+
+
+
+
+
+			</h:form>
+
+
+
+		</h:body>
+
+
+
+
+
+	</ui:define>
+</ui:composition>
+</html>
