@@ -18,14 +18,14 @@ import br.projecao.procura.persistence.generic.Dao;
 public abstract class AMBean<E> implements Serializable{
 
 	private static final long serialVersionUID = 2422972901879665537L;
-	public final String DEFAULT_INDEX="index.jsf";
+	public final static String DEFAULT_INDEX="index.jsf";
 	
 	protected final String boName;
 	protected final String paramName;
 	protected String indexPage = DEFAULT_INDEX; 
 	
 	//protected IGenericBo    <E,K> bo;
-	protected Integer		 selecionado = 0;
+	protected Integer		 selecionado = -1;
 	protected E 			 entidade;
 
 	@Inject
@@ -50,8 +50,12 @@ public abstract class AMBean<E> implements Serializable{
 			if(!param.isEmpty())
 				selecionado = new Integer(param);
 			
-			if (entidade == null && selecionado != null && selecionado > -1) {
+			if (selecionado > -1) {
 					entidade = getBo().getByID(selecionado);
+			}
+			
+			if(entidade == null){
+					entidade = getBo().newInstance();
 			}
 		} catch (Exception e) {
 			System.out.println("\n --------------------->Error "+ e.getMessage());
@@ -105,7 +109,11 @@ public abstract class AMBean<E> implements Serializable{
 	public String save() {
 		try {
 			System.out.println("\n Entidade: " + entidade);
-			getBo().salvar(entidade);
+			 /*if(selecionado !=null && selecionado  > 0){
+				 getBo().salvar(entidade);
+			 }else{*/
+			entidade = getBo().atualizar(entidade);
+			 //}
 			
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -145,7 +153,7 @@ public abstract class AMBean<E> implements Serializable{
 	}
 
 	
-	protected void sendMsg(String title,String msg){
+	public static void sendMsg(String title,String msg){
 		RequestContext.getCurrentInstance().showMessageInDialog(
 				new FacesMessage(FacesMessage.SEVERITY_INFO, title ,msg));
 	}

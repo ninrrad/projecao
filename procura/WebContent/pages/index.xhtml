@@ -1,0 +1,22 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:ui="http://java.sun.com/jsf/facelets">
+<h:body>
+	<ui:composition template="/pages/template/generico.xhtml">
+		<ui:define name="titulo">
+			Opções
+		</ui:define>
+		<ui:define name="barra">
+			 
+		</ui:define>
+		<ui:define name="meio">
+			<!--  h2 class="bt_home" Bem vindo ao procura... -->
+				<br/>
+				<p:commandButton icon=" fa fa3x fa-users" value="Cadastrar Usuario" styleClass="bt_home" action="users/index.jsf?faces-redirect=true"/><br/>
+				<p:commandButton icon=" fa fa3x fa-users" value="Cadastrar Professor" styleClass="bt_home" style="margin-top:5px !important;"/>
+		</ui:define>
+	</ui:composition>
+</h:body>
+</html>

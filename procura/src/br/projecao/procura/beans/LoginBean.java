@@ -39,6 +39,9 @@ public class LoginBean implements Serializable{
 	public void setSenha(String senha) {
 		this.senha = senha;
 	}
+	public Usuario getUsuario() {
+		return usuario;
+	}
 	
 	public String logon(){
 		
@@ -52,12 +55,12 @@ public class LoginBean implements Serializable{
 	        	if (!autenticado)
 	        		request.login(login, senha);
 	        	else{
-	        		return "/pages/page1.jsf";
+	        		return "/pages/index.jsf?faces-redirect=true";
 	        	}
 	            usuario = dao.getByLogin(login);
 	            autenticado = true;
 	            //externalContext.getSessionMap().put(SESSION_USER_VARIABLE_NAME, new User(username));
-        		return "/pages/page1.jsf";
+	            return "/pages/index.jsf?faces-redirect=true";
 
 	        } catch (Exception e) {
 	        	autenticado = false;

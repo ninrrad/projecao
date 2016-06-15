@@ -4,6 +4,10 @@ import java.util.List;
 
 import javax.inject.Inject;
 import javax.persistence.EntityManager;
+import javax.persistence.EntityTransaction;
+import javax.transaction.Transaction;
+
+import br.projecao.procura.beans.generic.AMBean;
 
 /**
  * Classe generica que deverá ser extendida por todos os DAOs, sendo necessario um dao por entidade para persistir a mesma.
@@ -35,18 +39,54 @@ public abstract class Dao<E> {
 		return manager.createQuery(String.format(DEFAULT_SELECT,entityClass.getName())).getResultList();
 	}
 	
+	@SuppressWarnings("unchecked")
+	public List<E> listar(String filtro){
+		return manager.createQuery(String.format(DEFAULT_SELECT+" where "+filtro,entityClass.getName())).getResultList();
+	}
+	
 	public void remove(E entidade){
-		manager.remove(entidade);
+		EntityTransaction tr = manager.getTransaction();
+		try{
+			tr.begin();
+			manager.remove(entidade);
+			manager.flush();
+			tr.commit();
+		}catch(Exception e){
+			AMBean.sendMsg("Exception no DAO", String.format("Falha ao remover entidade (%s) msg:%s , Classe:%s",entityClass.getName(),e.getMessage(),getClass().getSimpleName()));
+			tr.rollback();
+		}
 	}
 	
 	public void salvar(E entidade){
-		manager.persist(entidade);
+		EntityTransaction tr = manager.getTransaction();
+		try{
+			tr.begin();
+			manager.persist(entidade);
+			manager.flush();
+			tr.commit();
+		}catch(Exception e){
+			AMBean.sendMsg("Exception no DAO", String.format("Falha ao salvar entidade (%s) msg:%s , Classe:%s",entityClass.getName(),e.getMessage(),getClass().getSimpleName()));
+			tr.rollback();
+		}
 	}
 	
-	public void atualizar(E entidade){
-		manager.merge(entidade);
+	public E atualizar(E entidade){
+		E ret =null;
+		EntityTransaction tr = manager.getTransaction();
+		try{
+			tr.begin();
+			ret = manager.merge(entidade);
+			manager.flush();
+			tr.commit();
+		}catch(Exception e){
+			AMBean.sendMsg("Exception no DAO", String.format("Falha ao atualizar entidade (%s) msg:%s , Classe:%s",entityClass.getName(),e.getMessage(),getClass().getSimpleName()));
+			tr.rollback();
+		}
+		return ret;
 	}
 	
-	
+	public E newInstance() throws InstantiationException, IllegalAccessException{
+		return entityClass.newInstance();
+	}
 	
 }
