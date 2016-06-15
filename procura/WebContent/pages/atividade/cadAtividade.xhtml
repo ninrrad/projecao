@@ -1,0 +1,63 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:ui="http://java.sun.com/jsf/facelets"	>
+<h:body>
+	<ui:composition template="/pages/template/generico.xhtml">
+	
+		<ui:define name="titulo">
+			#{atividadeBean.entidade.id==null?'Cadastro de ':'Alteração de '}Atividade
+		</ui:define>
+		<ui:define name="barra">
+			
+				<p:link process=":messages" update=":messages" outcome="index.jsf?faces-redirect=true" >
+					<h:outputText styleClass="fa fa-arrow-left"/>
+				</p:link>
+				<p:commandLink icon="ui-icon-disk" 	process="@form" update="@form :messages" 	action="#{atividadeBean.save()}"  >
+					<h:outputText styleClass="fa fa-save"/>
+					<f:param  value="#{atividadeBean.entidade.id == null ? '0' : atividadeBean.entidade.id }"	name="#{atividadeBean.paramName}" />
+				</p:commandLink>
+			
+		</ui:define>
+
+		<ui:define name="meio">
+			<div style=" margin-left: auto; margin-right: auto;">
+					
+				<p:panel 
+					id="panelCadAtividade">
+						<h:panelGrid columns="2" cellspacing="5" cellpadding="4">
+							<p:outputLabel style="font-weight:bold; " for="id" value="Código" />
+							<p:inputText id="id" disabled="true"	value="#{atividadeBean.entidade.id}" />
+							<p:outputLabel style="font-weight:bold; " for="tipo" value="Tipo" />
+							<p:selectOneMenu id="tipo"  label="Tipos" value="#{atividadeBean.entidade.tipo}">
+            				   <f:selectItems  itemLabel="#{it}" itemValue="#{it}" value="#{atividadeBean.tipos}"  var="it"/>
+        					</p:selectOneMenu>
+							<p:outputLabel for="name" value="Nome" />
+							<p:inputText id="name" required="true"		value="#{atividadeBean.entidade.nome}" label="Nome" />
+							
+							
+							<p:outputLabel for="dataFinal" value="Data final" />
+        					<p:calendar id="dataFinal" value="#{atividadeBean.entidade.dataFinal}" pattern="dd/MM/yyyy" mask="true" />
+							
+							<p:outputLabel for="dataEntrega" value="Data de entrega" />
+        					<p:calendar id="dataEntrega" value="#{atividadeBean.entidade.dataEntrega}" pattern="dd/MM/yyyy" mask="true" />
+							
+							<p:outputLabel for="dataApresentacao" value="Data de apresentação" />
+        					<p:calendar id="dataApresentacao" value="#{atividadeBean.entidade.dataApresentacao}" pattern="dd/MM/yyyy" mask="true" />
+					
+							<p:outputLabel for="dataExercicio" value="Data de exercício" />
+        					<p:calendar id="dataExercicio" value="#{atividadeBean.entidade.dataExercicio}" pattern="dd/MM/yyyy" mask="true" />
+							
+					
+						</h:panelGrid>
+
+				</p:panel>
+					
+			</div>
+		</ui:define>
+		
+	</ui:composition>
+	
+</h:body>
+</html>

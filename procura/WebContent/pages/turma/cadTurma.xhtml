@@ -1,0 +1,55 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:ui="http://java.sun.com/jsf/facelets"	>
+<h:body>
+	<ui:composition template="/pages/template/generico.xhtml">
+	
+		<ui:define name="titulo">
+			#{turmaBean.entidade.id==null?'Cadastro de ':'Alteração de '}Turma
+		</ui:define>
+		<ui:define name="barra">
+			
+				<p:link process=":messages" update=":messages" outcome="index.jsf?faces-redirect=true" >
+					<h:outputText styleClass="fa fa-arrow-left"/>
+				</p:link>
+				<p:commandLink icon="ui-icon-disk" 	process="@form" update="@form :messages" 	action="#{turmaBean.save()}"  >
+					<h:outputText styleClass="fa fa-save"/>
+					<f:param  value="#{turmaBean.entidade.id == null ? '0' : turmaBean.entidade.id }"	name="#{turmaBean.paramName}" />
+				</p:commandLink>
+			
+		</ui:define>
+
+		<ui:define name="meio">
+			<div style=" margin-left: auto; margin-right: auto;">
+					
+				<p:panel 
+					id="panelCadTurma">
+						<h:panelGrid columns="2" cellspacing="5" cellpadding="4">
+							<p:outputLabel style="font-weight:bold; " for="id" value="Código" />
+							<p:inputText id="id" disabled="true"	value="#{turmaBean.entidade.id}" />
+							
+							
+							<p:outputLabel for="name" value="Nome" />
+							<p:inputText id="name" required="true"		value="#{turmaBean.entidade.nome}" label="Nome" />
+							<p:outputLabel for="diciplina" value="Diciplina" />
+							<p:inputText id="diciplina" required="true"		value="#{turmaBean.entidade.diciplina}" label="Nome" />
+					
+							<p:outputLabel style="font-weight:bold; " for="professor" value="Professor" />
+							<p:selectOneMenu id="professor"  label="Professor" value="#{turmaBean.entidade.professor}"  converter="generic_converter">
+            				   <f:selectItems  itemLabel="#{it.nome}" itemValue="#{it}" value="#{turmaBean.professores}"  var="it"/>
+        					</p:selectOneMenu>
+		
+					
+						</h:panelGrid>
+
+				</p:panel>
+					
+			</div>
+		</ui:define>
+		
+	</ui:composition>
+	
+</h:body>
+</html>

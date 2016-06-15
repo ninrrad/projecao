@@ -1,0 +1,45 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:ui="http://java.sun.com/jsf/facelets">
+
+<h:body>
+	<ui:composition template="/pages/template/generico.xhtml">
+		<ui:define name="titulo">
+			Atividades
+		</ui:define>
+		<ui:define name="barra">
+				<p:commandLink  action="/pages/index.jsf?faces-redirect=true" ajax="false" >
+					<h:outputText styleClass="fa fa-home"/>
+				</p:commandLink>
+				<p:commandLink action="cadAtividade" >
+					<h:outputText styleClass="fa fa-plus"/>
+					<f:param value="0"	name="#{atividadeBean.paramName}" />
+				</p:commandLink>
+		</ui:define>
+		<ui:define name="meio">
+					<p:dataTable  id="listaAtividades" var="item" style="text-align:center; "
+						value="#{atividadeBean.all}" 	emptyMessage="Não ha registros cadastros.">
+
+						<p:column headerText="Código" width="20">
+							<h:outputText value="#{item.id}" />
+						</p:column>
+										  
+						<p:column style=" text-align:center; " headerText="Descrição" width="100">
+							<p:commandLink style=" text-align:center; " value="#{item.nome}" action="cadAtividade.jsf">
+								<f:param value="#{item.id}" name="#{atividadeBean.paramName}" />
+							</p:commandLink>
+						</p:column>
+
+						<p:column headerText="" style=" text-align:center; " width="20">
+							<p:commandLink  	actionListener="#{atividadeBean.remover(item)}" update="listaAtividades">
+								<h:outputText  styleClass="bt_red fa fa-remove"/>
+								<f:param value="#{item.id}" name="#{atividadeBean.paramName}" />
+							</p:commandLink>
+						</p:column>
+					</p:dataTable>
+		</ui:define>
+	</ui:composition>
+</h:body>
+</html>
