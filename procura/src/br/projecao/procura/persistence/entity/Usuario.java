@@ -53,6 +53,9 @@ public class Usuario  implements Principal,Serializable{
 	@ManyToMany
 	private Set<Usuario> subordinados = new HashSet<Usuario>(0);
 	
+	@ManyToMany
+	private Set<Turma> turmas = new HashSet<Turma>(0);
+	
 	@OneToMany(fetch = FetchType.LAZY, cascade=CascadeType.ALL, mappedBy="usuario")
 	private Set<AtividadeUsuario> atividadesUsuario = new HashSet<AtividadeUsuario>(0);
 	
@@ -150,6 +153,14 @@ public class Usuario  implements Principal,Serializable{
 
 	public void setAtividadesUsuario(Set<AtividadeUsuario> atividadesUsuario) {
 		this.atividadesUsuario = atividadesUsuario;
+	}
+	
+	public Set<Turma> getTurmas() {
+		return turmas;
+	}
+
+	public void setTurmas(Set<Turma> turmas) {
+		this.turmas = turmas;
 	}
 
 	@Override
