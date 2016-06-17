@@ -4,6 +4,8 @@ package br.projecao.procura.beans;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
+import java.util.function.Predicate;
 
 import javax.inject.Inject;
 import javax.inject.Named;
@@ -57,23 +59,40 @@ public class AtividadeBean extends AMBean<Atividade> {
 	 //TODO: Armazenar lista
 	 public void  setTurmas(DualListModel<Turma> turmas){
 		 HashSet<Turma> turmasSelecionados = new HashSet<Turma>(turmas.getTarget());
-		 
-		 for(Turma ts : entidade.getTurmas()){
-			 for(Usuario u : ts.getAlunos()){
-				atividadeUsuarioDao.remove(u.getId(), entidade.getId());
-			 }
-		 }
-		 
-		 for(Turma ts : turmasSelecionados){
-			 for(Usuario u : ts.getAlunos()){
-				AtividadeUsuario atividadeUsuario = new AtividadeUsuario();
-				atividadeUsuario.setAtividade(entidade);
-				atividadeUsuario.setUsuario(u);
-				atividadeUsuarioDao.salvar(atividadeUsuario);
-			 }
-		 }
-		 
 	 	 entidade.setTurmas(turmasSelecionados);
 	 	 System.out.println();
 	 }
+	 
+	 @Override
+		public String save() {
+			 String ret = super.save();
+			Set<Turma> turmas = entidade.getTurmas();
+			for(Turma ts : turmaDao.listar()){
+				if(!turmas.contains(ts))
+				 for(Usuario u : ts.getAlunos()){
+					if(entidade.getId() != null)atividadeUsuarioDao.remove(u.getId(), entidade.getId());
+				 }
+			 }
+			 List<AtividadeUsuario> atividades = atividadeUsuarioDao.listar(); 
+			 for(Turma ts : entidade.getTurmas()){
+				 for(Usuario u : ts.getAlunos()){
+					
+					
+					 return ((AtividadeUsuario)item).getUsuario().equals(u) &&  ((AtividadeUsuario)item).getAtividade().equals(entidade);
+					
+						//List result =  list, condition );
+
+ 
+					if(busca.size() < 1){
+						AtividadeUsuario atividadeUsuario = new AtividadeUsuario();
+						atividadeUsuario.setAtividade(entidade);
+						atividadeUsuario.setUsuario(u);
+						atividadeUsuarioDao.salvar(atividadeUsuario);
+					}
+				 }
+			 }
+
+			return ret;
+		}
+	 
 }
