@@ -15,6 +15,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 
@@ -45,6 +46,12 @@ public class Atividade implements Serializable{
 	
 	@Column(nullable=true)
 	private Date dataExercicio;
+	
+	@Column(nullable=true)
+	private Integer valor;
+	
+	@ManyToMany(fetch = FetchType.EAGER,cascade = CascadeType.ALL)
+	private Set<Turma> turmas = new HashSet<Turma>(0);
 	
 	@OneToMany(fetch = FetchType.LAZY, cascade=CascadeType.ALL,mappedBy="atividade")
 	private Set<AtividadeUsuario> usuariosAtividade = new HashSet<AtividadeUsuario>(0);
@@ -99,6 +106,21 @@ public class Atividade implements Serializable{
 		this.usuariosAtividade = usuariosAtividade;
 	}
 	
+	
+	public Set<Turma> getTurmas() {
+		return turmas;
+	}
+	
+	public void setTurmas(Set<Turma> turmas) {
+		this.turmas = turmas;
+	}
+	
+	public Integer getValor() {
+		return valor;
+	}
+	public void setValor(Integer valor) {
+		this.valor = valor;
+	}
 	@Override
 	public int hashCode() {
 		final int prime = 31;

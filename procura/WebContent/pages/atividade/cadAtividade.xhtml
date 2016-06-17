@@ -52,6 +52,13 @@
 					
 						</h:panelGrid>
 
+							<p:pickList id="turmas" immediate="true" value="#{atividadeBean.turmas}" var="sub" effect="bounce" 
+	                			itemValue="#{sub}" itemLabel="#{sub.nome}"  showCheckbox="true" responsive="true"
+	                			showSourceFilter="true" showTargetFilter="true" filterMatchMode="contains" converter="generic_converter">
+	                			<f:facet name="sourceCaption">Turmas disponiveis</f:facet>
+        					     <f:facet name="targetCaption">Turmas selecionadas</f:facet>
+	 						</p:pickList>	
+
 				</p:panel>
 					
 			</div>

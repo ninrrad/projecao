@@ -14,11 +14,11 @@ import javax.faces.convert.FacesConverter;
 public class GenericConverter implements Converter, Serializable {
 	private static final long serialVersionUID = 5646548978978976643L;
 	
-	public static final  String CONVERTER_KEY_MAP 		= "GENERIC_CONVERTER_MAP";
-	public static final  String CONVERTER_KEY_TIME_MAP 	= "GENERIC_CONVERTER_TIME_MAP";
-	public static final  int    CONVERTER_OBJECT_TIME_LIFE 	= 1000 * 60 * 5; // 5 Min de vida apra um objeto no mapa
+	public static final  String CONVERTER_KEY_MAP 			= "_GENERIC_CONVERTER_MAP_";
+	public static final  int    CONVERTER_OBJECT_TIME_LIFE 	= 1000 * 60 * 10; // 5 Min de vida apra um objeto no mapa
 	
-	protected class WrraperClass{
+	protected class WrraperClass implements  Serializable {
+		private static final long serialVersionUID = 5646548978978976644L;
 		Object  val;
 		long   time;
 		protected WrraperClass(Object val, long time) {
@@ -27,11 +27,11 @@ public class GenericConverter implements Converter, Serializable {
 		}
 	}
 	
-	protected <T> Map<String,T> getConverterMap(FacesContext context,String key){
+	protected <T> Map<String,T> getConverterMap(FacesContext context){
 		Map<String,Object> viewMap = context.getViewRoot().getViewMap();
 		Map<String,T> converterMap =null;
 		
-		if (viewMap.containsValue(CONVERTER_KEY_MAP)){
+		if (viewMap.containsKey(CONVERTER_KEY_MAP)){
 			converterMap =	(Map<String,T>) viewMap.get(CONVERTER_KEY_MAP);
 		}else{
 			converterMap = new HashMap<String,T>();
@@ -52,7 +52,7 @@ public class GenericConverter implements Converter, Serializable {
 	public Object getAsObject(FacesContext context, UIComponent component,	String value) {
 		Object ret = null;
 		try{
-			Map<String,WrraperClass> converterMap   = getConverterMap(context,CONVERTER_KEY_MAP);
+			Map<String,WrraperClass> converterMap   = getConverterMap(context);
 			WrraperClass wC=converterMap.remove(value);
 			ret =  (wC!=null ? wC.val : null);
 			checkTimeOut(converterMap);
@@ -68,7 +68,7 @@ public class GenericConverter implements Converter, Serializable {
 		try{
 			Method getId = value.getClass().getMethod("getId", null);
 			ret =value.getClass().getName()+getId.invoke(value, null).toString();
-			Map<String,WrraperClass> converterMap     = getConverterMap(context,CONVERTER_KEY_MAP);
+			Map<String,WrraperClass> converterMap     = getConverterMap(context);
 			converterMap.put(ret,new WrraperClass(value,System.currentTimeMillis()));
 			checkTimeOut(converterMap);
 		} catch (Exception e) {

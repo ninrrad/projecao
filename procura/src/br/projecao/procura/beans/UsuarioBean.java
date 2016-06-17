@@ -7,6 +7,7 @@ import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 
+import javax.faces.event.AjaxBehaviorEvent;
 import javax.inject.Inject;
 import javax.inject.Named;
 
@@ -14,17 +15,21 @@ import org.primefaces.model.DualListModel;
 
 import br.projecao.procura.beans.generic.AMBean;
 import br.projecao.procura.beans.generic.ViewScoped;
+import br.projecao.procura.persistence.dao.TurmaDao;
 import br.projecao.procura.persistence.dao.UsuarioDao;
 import br.projecao.procura.persistence.entity.TipoUsuario;
+import br.projecao.procura.persistence.entity.Turma;
 import br.projecao.procura.persistence.entity.Usuario;
 
 @Named
 @ViewScoped
 public class UsuarioBean extends AMBean<Usuario> {
    private static final long serialVersionUID = 938498489323546761L;
-	
+  
    @Inject
-	UsuarioDao usuarioDao;
+   private UsuarioDao usuarioDao;
+   @Inject
+   private TurmaDao turmaDao;
     
 	@Override
 	protected UsuarioDao  getBo() {
@@ -50,4 +55,31 @@ public class UsuarioBean extends AMBean<Usuario> {
 	 	 entidade.setSubordinados(usuariosSelecionados);
 	 }
 
+	 public DualListModel<Turma> getTurmas(){
+		 DualListModel<Turma> turmas = new DualListModel<Turma>(); 
+		 turmas.setSource(turmaDao.listar());
+		  List<Turma> target = (entidade.getTurmas() !=null) ? new ArrayList<Turma>(entidade.getTurmas()) :new ArrayList<Turma>();
+		  turmas.getSource().removeAll(target);
+		  turmas.getSource().remove(entidade);
+		  turmas.setTarget(target);
+	 	  return turmas;
+	 }
+	 
+	 //TODO: Armazenar lista
+	 public void  setTurmas(DualListModel<Turma> turmas){
+		 HashSet<Turma> usuariosSelecionados = new HashSet<Turma>(turmas.getTarget());
+	 	 entidade.setTurmas(usuariosSelecionados);
+	 	 System.out.println();
+	 }
+	 
+	 @Override
+		public String save() {
+			if(entidade.getId()==null && !usuarioDao.listar("login ='" + entidade.getLogin() +"'" ).isEmpty()){
+				sendMsg("Falha ao salvar", " O login informado já existe, porfavor altere o login.");
+				return null;
+			}else{
+				return super.save();
+			}
+		}
+	 
 }

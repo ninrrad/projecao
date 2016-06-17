@@ -29,15 +29,17 @@
 						<h:panelGrid columns="2" cellspacing="5" cellpadding="4">
 							<p:outputLabel style="font-weight:bold; " for="id" value="Código" />
 							<p:inputText id="id" disabled="true"	value="#{usuarioBean.entidade.id}" />
-							<p:outputLabel style="font-weight:bold; " for="tipo" value="Tipo" />
-							<p:selectOneMenu id="tipo"  label="Tipos" value="#{usuarioBean.entidade.tipo}">
+							<p:outputLabel  style="font-weight:bold; " for="tipo" value="Tipo" />
+							<p:selectOneMenu  id="tipo" label="Tipos" value="#{usuarioBean.entidade.tipo}" >
+							 	<f:selectItem itemLabel="Selecione o perfil" itemValue="" noSelectionOption="true" />
+							 	<f:ajax execute="tipo turmas subordinados" render="listas"/>
             				   <f:selectItems  itemLabel="#{it}" itemValue="#{it}" value="#{usuarioBean.tipos}"  var="it"/>
         					</p:selectOneMenu>
 							<p:outputLabel for="name" value="Nome" />
 							<p:inputText id="name" required="true"		value="#{usuarioBean.entidade.nome}" label="Nome" />
 							<p:outputLabel for="email" value="E-mail" />
 							<p:inputText id="email" required="true"		value="#{usuarioBean.entidade.email}" label="email" />
-							<p:outputLabel for="telefone" value="Telefone" />
+							<p:outputLabel for="telefone" value="Telefone" />	
 							<p:inputText id="telefone" required="true"	value="#{usuarioBean.entidade.telefone}" label="telefone" />
 							
 							<p:outputLabel for="login" value="Login" />
@@ -45,18 +47,24 @@
 							<p:outputLabel for="senha" value="Senha"  />
 							<p:password  id="senha" required="false" feedback="true" value="#{usuarioBean.entidade.password}" label="Senha" promptLabel="Insira a senha" weakLabel="Senha ruim" goodLabel="Boa senha" strongLabel="Ótima senha"/>
 					
-							<p:outputLabel for="admin_user" value="Usuario Administrador"  />
-							<p:selectBooleanCheckbox id="admin_user" label="admin_user"   />
-							<p:outputLabel for="active" value="Usuario Ativo"  />
-							<p:selectBooleanCheckbox id="active" label="Usuario Ativo" />
+							
 					
 						</h:panelGrid>
-						
-						 <p:pickList id="subordinados" value="#{usuarioBean.subordinados}" var="sub" effect="bounce" rendered="#{usuarioBean.entidade.tipo == 'PROFESSOR' or usuarioBean.entidade.tipo == 'CORDENADOR'}"
-                itemValue="#{sub}" itemLabel="#{sub.nome}" showSourceControls="true" showTargetControls="true" showCheckbox="true" responsive="true"
-                showSourceFilter="true" showTargetFilter="true" filterMatchMode="contains" converter="generic_converter">
- 
- 						</p:pickList>	
+						<h:panelGroup id="listas">
+							
+							<p:pickList  id="subordinados"  value="#{usuarioBean.subordinados}" var="sub" effect="bounce" rendered="#{usuarioBean.entidade.tipo == 'CORDENADOR'}"
+	                			itemValue="#{sub}" itemLabel="#{sub.nome}" showCheckbox="true" responsive="true"
+	                			showSourceFilter="true" showTargetFilter="true" filterMatchMode="contains" converter="generic_converter">
+	                			 <f:facet name="sourceCaption">Professores disponiveis</f:facet>
+        					     <f:facet name="targetCaption">Professores selecionados</f:facet>
+	 						</p:pickList>
+	 						<p:pickList id="turmas" immediate="true" value="#{usuarioBean.turmas}" var="sub" effect="bounce" rendered="#{usuarioBean.entidade.tipo == 'ALUNO'}"
+	                			itemValue="#{sub}" itemLabel="#{sub.nome}"  showCheckbox="true" responsive="true"
+	                			showSourceFilter="true" showTargetFilter="true" filterMatchMode="contains" converter="generic_converter">
+	                			<f:facet name="sourceCaption">Turmas disponiveis</f:facet>
+        					     <f:facet name="targetCaption">Turmas selecionadas</f:facet>
+	 						</p:pickList>	
+ 						</h:panelGroup>
 				</p:panel>
 					
 			</div>

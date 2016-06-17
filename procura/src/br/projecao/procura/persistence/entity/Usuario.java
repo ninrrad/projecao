@@ -18,6 +18,13 @@ import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 import javax.security.auth.Subject;
 
+import org.hibernate.annotations.Cascade;
+import org.hibernate.engine.spi.CascadeStyle;
+
+/**
+ * @author root
+ *
+ */
 @Entity()
 public class Usuario  implements Principal,Serializable{
 
@@ -49,14 +56,17 @@ public class Usuario  implements Principal,Serializable{
 	@Enumerated( EnumType.STRING)
 	@Column(nullable=false)
 	private TipoUsuario tipo;
-
-	@ManyToMany
-	private Set<Usuario> subordinados = new HashSet<Usuario>(0);
 	
-	@ManyToMany
+	@ManyToMany(fetch = FetchType.LAZY,cascade=CascadeType.ALL)
+	private Set<Usuario> subordinados;
+	
+	@ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL,mappedBy="subordinados")
+	private Set<Usuario> superiores = new HashSet<Usuario>();
+	
+	@ManyToMany(fetch = FetchType.EAGER,cascade = CascadeType.ALL)
 	private Set<Turma> turmas = new HashSet<Turma>(0);
 	
-	@OneToMany(fetch = FetchType.LAZY, cascade=CascadeType.ALL, mappedBy="usuario")
+	@OneToMany(fetch = FetchType.EAGER, cascade=CascadeType.ALL,mappedBy="usuario")
 	private Set<AtividadeUsuario> atividadesUsuario = new HashSet<AtividadeUsuario>(0);
 	
 	public Integer getId() {
@@ -147,6 +157,16 @@ public class Usuario  implements Principal,Serializable{
 		this.subordinados = subordinados;
 	}
 	
+	
+	
+	public Set<Usuario> getSuperiores() {
+		return superiores;
+	}
+
+	public void setSuperiores(Set<Usuario> superiores) {
+		this.superiores = superiores;
+	}
+
 	public Set<AtividadeUsuario> getAtividadesUsuario() {
 		return atividadesUsuario;
 	}
